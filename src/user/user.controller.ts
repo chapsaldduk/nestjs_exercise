@@ -9,6 +9,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { CreateUserDTO } from './dto/create-user.dto';
+import { UpdateUserDTO } from './dto/update-user.dto';
 import { User } from './entities/user.entity';
 import { UserService } from './user.service';
 
@@ -43,9 +44,9 @@ export class UserController {
   }
 
   @Patch('/:id')
-  patch(@Param('id') movieID: string, @Body() updateData) {
+  patch(@Param('id') ID: string, @Body() updateData: UpdateUserDTO) {
     return {
-      updatedMovie: movieID,
+      updateTarget: ID,
       ...updateData,
     };
   }

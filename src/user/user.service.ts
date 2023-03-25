@@ -35,10 +35,21 @@ export class UserService {
 
   async create(userData: CreateUserDTO): Promise<User> {
     // 중복제거 필요
+    // user_id, user_email, user_number 중복 안됨
+    const { user_id, user_email, user_number } = userData;
+    const userExists = await this.userRepository.findOne({
+      where: [{ user_id }, { user_email }, { user_number }],
+    });
+    if (userExists) {
+      throw new Error(
+        `User with ${user_id}, ${user_email}, or ${user_number} already exists`,
+      );
+    }
     const newUser = this.userRepository.create(userData);
     return this.userRepository.save(newUser);
   }
 
   // update 만들어야됨
   // 중복 제거 포함
+  async update(id: number, UpdateUserDTO: UpdateUserDTO) {}
 }
