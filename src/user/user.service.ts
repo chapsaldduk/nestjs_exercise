@@ -20,7 +20,7 @@ export class UserService {
     return this.userRepository.find();
   }
 
-  async getOne(id: number): Promise<User> {
+  async getOne(id: number): Promise<User | undefined> {
     return this.userRepository.findOne({
       where: { id },
     });
@@ -34,8 +34,6 @@ export class UserService {
   }
 
   async create(userData: CreateUserDTO): Promise<User> {
-    // 중복제거 필요
-    // user_id, user_email, user_number 중복 안됨
     const { user_id, user_email, user_number } = userData;
     const userExists = await this.userRepository.findOne({
       where: [{ user_id }, { user_email }, { user_number }],
