@@ -41,4 +41,5 @@ export class UserService {
 
   // update 만들어야됨
   // 중복 제거 포함
+  async update(id: number, UpdateUserDTO: UpdateUserDTO) {}
 }
