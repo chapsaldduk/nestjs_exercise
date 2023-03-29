@@ -28,19 +28,18 @@ export class UserController {
   }
 
   @Get('/:id')
-  getOne(@Param('id') user_ID: string) {
-    return this.userService.getOne(parseInt(user_ID));
+  getOne(@Param('id') userID: number) {
+    return this.userService.getOne(userID);
   }
 
   @Post()
   create(@Body() createUserData: CreateUserDTO) {
-    console.log(createUserData);
     return this.userService.create(createUserData);
   }
 
   @Delete('/:id')
-  remove(@Param('id') id: string) {
-    return this.userService.deleteOne(parseInt(id));
+  remove(@Param('id') id: number) {
+    return this.userService.deleteOne(id);
   }
 
   @Patch('/:id')

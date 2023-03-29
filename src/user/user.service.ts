@@ -13,7 +13,7 @@ import { UpdateUserDTO } from './dto/update-user.dto';
 export class UserService {
   constructor(
     @InjectRepository(User)
-    private userRepository: Repository<User>,
+    private readonly userRepository: Repository<User>,
   ) {}
 
   async getAll(): Promise<User[]> {
